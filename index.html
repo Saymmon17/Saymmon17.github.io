@@ -262,7 +262,7 @@
   <div class="card">
     <p>✔ Sistema Java (cadastro)</p>
     <p>✔ Sites interativos</p>
-    <button onclick="abrirGit()">Acessar GitHub</button>
+    <a href="https://github.com/Saymmon17" target="_blank" style="display: inline-block; padding: 10px 20px; background: transparent; border: 1px solid #00f7ff; color: #00f7ff; text-decoration: none; border-radius: 5px; transition: 0.3s;">Acessar GitHub</a>
   </div>
 </section>
 
@@ -306,7 +306,6 @@
   let gameInterval;
   let currentGame = 'click';
 
-  // Pong variables
   let ball = { x: 200, y: 150, dx: 2, dy: 2, radius: 10 };
   let paddleLeft = { x: 10, y: 120, width: 10, height: 60 };
   let paddleRight = { x: 380, y: 120, width: 10, height: 60 };
@@ -334,7 +333,7 @@
       ball.y = 150;
       ball.dx = 2;
       ball.dy = 2;
-      gameInterval = setInterval(updatePong, 16); // ~60fps
+      gameInterval = setInterval(updatePong, 16);
     }
   }
 
@@ -353,7 +352,7 @@
     if (!gameRunning || currentGame !== 'click') return;
     const x = Math.random() * (canvas.width - 50) + 25;
     const y = Math.random() * (canvas.height - 50) + 25;
-    targets.push({ x, y, radius: 25, life: 100 }); // larger
+    targets.push({ x, y, radius: 25, life: 100 });
     setTimeout(spawnTarget, 2000);
   }
 
@@ -370,24 +369,20 @@
 
   function updatePong() {
     if (!gameRunning || currentGame !== 'pong') return;
-    // Move ball
+    
     ball.x += ball.dx;
     ball.y += ball.dy;
-
-    // Ball collision with top/bottom
+    
     if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
       ball.dy = -ball.dy;
     }
 
-    // Ball collision with paddles
     if (ball.x - ball.radius <= paddleLeft.x + paddleLeft.width && ball.y >= paddleLeft.y && ball.y <= paddleLeft.y + paddleLeft.height) {
       ball.dx = -ball.dx;
     }
     if (ball.x + ball.radius >= paddleRight.x && ball.y >= paddleRight.y && ball.y <= paddleRight.y + paddleRight.height) {
       ball.dx = -ball.dx;
     }
-
-    // Score
     if (ball.x < 0) {
       pongScore.right++;
       resetBall();
@@ -396,8 +391,6 @@
       pongScore.left++;
       resetBall();
     }
-
-    // AI paddle
     paddleRight.y = ball.y - paddleRight.height / 2;
 
     scoreEl.textContent = 'Player: ' + pongScore.left + ' | AI: ' + pongScore.right;
@@ -417,22 +410,18 @@
     const y = e.clientY - rect.top;
     targets.forEach((target, index) => {
       const dist = Math.sqrt((x - target.x) ** 2 + (y - target.y) ** 2);
-      if (dist < 30) { // larger click area
+      if (dist < 30) {
         targets.splice(index, 1);
         score++;
         scoreEl.textContent = 'Score: ' + score;
       }
     });
   });
-
-  // Mouse move for Pong
   canvas.addEventListener('mousemove', (e) => {
     if (!gameRunning || currentGame !== 'pong') return;
     const rect = canvas.getBoundingClientRect();
     paddleLeft.y = e.clientY - rect.top - paddleLeft.height / 2;
   });
-
-  // Initial draw
   draw();
 
   function draw() {
@@ -453,11 +442,11 @@
 
   function drawPong() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Draw paddles
+    
     ctx.fillStyle = '#00f7ff';
     ctx.fillRect(paddleLeft.x, paddleLeft.y, paddleLeft.width, paddleLeft.height);
     ctx.fillRect(paddleRight.x, paddleRight.y, paddleRight.width, paddleRight.height);
-    // Draw ball
+    
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
     ctx.fillStyle = '#ff00ff';
