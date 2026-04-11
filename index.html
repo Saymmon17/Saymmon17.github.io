@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saymmon Romero | Cyber Dev</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: radial-gradient(circle at top, #020617, #000000);
+      color: #00f7ff;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 15px #00f7ff;
+      animation: glitch 1s infinite alternate;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red; }
+      100% { text-shadow: -2px 0 blue; }
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #ff00ff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      border-bottom: 2px solid #00f7ff;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00f7ff44;
+      margin-top: 20px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid #00f7ff;
+      color: #00f7ff;
+      padding: 10px 20px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00f7ff;
+      color: black;
+      box-shadow: 0 0 10px #00f7ff;
+    }
+
+    .dropdown {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+    }
+
+    .terminal {
+      background: black;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #00f7ff;
+      font-size: 14px;
+      color: #00ff88;
+      height: 140px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+    }
+
+    .skill {
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .skill:hover {
+      color: #ff00ff;
+    }
+
+    input {
+      width: 70%;
+      margin-top: 10px;
+      padding: 10px;
+      background: black;
+      color: #00f7ff;
+      border: 1px solid #00f7ff;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    #input + button {
+      width: 25%;
+      margin-left: 5%;
+      margin-top: 10px;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid #00f7ff;
+      color: #00f7ff;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    #input + button:hover {
+      background: #00f7ff;
+      color: black;
+    }
+
+    #gameSelector {
+      margin-bottom: 10px;
+    }
+
+    #gameSelector button {
+      margin-right: 10px;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid #00f7ff;
+      color: #00f7ff;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    #gameSelector button:hover {
+      background: #00f7ff;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Saymmon.exe</h1>
+  <p>> Desenvolvedor em formação | Java | Web</p>
+
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#skills">Skills</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#terminal">Terminal</a>
+  </nav>
+</header>
+
+<section id="sobre">
+  <h2>Sobre</h2>
+  <div class="card">
+    <p>Sou estudante de Tecnologia da Informação com foco em desenvolvimento de software. Atualmente curso ensino médio integrado ao técnico em TI e venho construindo projetos práticos para fortalecer minha base.</p>
+    <p>Tenho grande interesse em programação, lógica computacional e engenharia de software, sempre buscando evoluir e aprender novas tecnologias.</p>
+    <p>Meu objetivo é ingressar como desenvolvedor júnior ou estagiário e crescer profissionalmente na área de tecnologia.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="dropdown" onclick="toggleSkills()">Skills ▲</h2>
+  <div class="card" id="skillsContent">
+    <div class="skill" onclick="toggleDetail('java')">
+      <p>> Java: clique para saber mais</p>
+      <div id="java-detail" class="hidden">
+        <p>Domínio avançado e profundo em Programação Orientada a Objetos (POO), incluindo herança, polimorfismo, encapsulamento e abstração. Experiência sólida em estruturas de dados, algoritmos complexos e desenvolvimento de aplicações robustas, com conhecimento em frameworks como Spring Boot para criação de APIs e microsserviços de alto desempenho.</p>
+        <p>Detalhes adicionais: Experiência prática em desenvolvimento de sistemas de cadastro, manipulação de arquivos e integração com bancos de dados. Projetos incluem aplicações console e GUI com Swing.</p>
+      </div>
+    </div>
+    <div class="skill" onclick="toggleDetail('javascript')">
+      <p>> JavaScript: clique para saber mais</p>
+      <div id="javascript-detail" class="hidden">
+        <p>Forte conhecimento avançado em ES6+, manipulação de DOM, assincronismo com Promises e async/await, além de experiência em desenvolvimento full-stack com Node.js para back-end e frameworks como React e Vue.js para front-end dinâmico e responsivo.</p>
+        <p>Detalhes adicionais: Criação de sites interativos, manipulação de eventos, AJAX para comunicação com servidores e uso de bibliotecas como jQuery para simplificação de código.</p>
+      </div>
+    </div>
+    <div class="skill" onclick="toggleDetail('htmlcss')">
+      <p>> HTML & CSS: clique para saber mais</p>
+      <div id="htmlcss-detail" class="hidden">
+        <p>Especialista em criação de interfaces web modernas e acessíveis, utilizando técnicas avançadas como Flexbox, Grid, animações CSS3, responsividade com media queries e pré-processadores como SASS/SCSS para otimização e manutenção de código limpo e escalável.</p>
+        <p>Detalhes adicionais: Design responsivo para dispositivos móveis, acessibilidade com ARIA, otimização de performance e integração com frameworks CSS como Bootstrap.</p>
+      </div>
+    </div>
+    <div class="skill" onclick="toggleDetail('python')">
+      <p>> Python: clique para saber mais</p>
+      <div id="python-detail" class="hidden">
+        <p>Conhecimento intermediário a avançado em scripting, automação, análise de dados com bibliotecas como Pandas e NumPy, desenvolvimento web com Django/Flask, e integração com APIs RESTful para soluções eficientes e inovadoras.</p>
+        <p>Detalhes adicionais: Automação de tarefas, processamento de dados e criação de scripts para web scraping com BeautifulSoup.</p>
+      </div>
+    </div>
+    <div class="skill" onclick="toggleDetail('sql')">
+      <p>> SQL: clique para saber mais</p>
+      <div id="sql-detail" class="hidden">
+        <p>Proficiência em bancos de dados relacionais, incluindo consultas complexas, otimização de performance, modelagem de dados e uso de sistemas como MySQL, PostgreSQL e SQLite para gerenciamento de dados em aplicações de grande escala.</p>
+        <p>Detalhes adicionais: Criação de esquemas de banco, joins avançados, stored procedures e integração com aplicações Java e Python.</p>
+      </div>
+    </div>
+    <div class="skill" onclick="toggleDetail('git')">
+      <p>> Git & GitHub: clique para saber mais</p>
+      <div id="git-detail" class="hidden">
+        <p>Expertise em controle de versão, branching strategies (Git Flow), resolução de conflitos, colaboração em equipes via pull requests, e integração contínua com ferramentas como GitHub Actions para automação de pipelines de desenvolvimento.</p>
+        <p>Detalhes adicionais: Gerenciamento de repositórios, code reviews e deploy automatizado via GitHub Pages.</p>
+      </div>
+    </div>
+    <div class="skill" onclick="toggleDetail('outras')">
+      <p>> Outras Tecnologias: clique para saber mais</p>
+      <div id="outras-detail" class="hidden">
+        <p>Familiaridade com TypeScript para tipagem estática em JavaScript, Docker para containerização, e conceitos de DevOps como CI/CD, além de experiência em testes unitários e integração com Jest e JUnit.</p>
+        <p>Detalhes adicionais: Testes automatizados, containerização de aplicações e práticas ágeis de desenvolvimento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <h2>Projetos</h2>
+  <div class="card">
+    <p>✔ Sistema Java (cadastro)</p>
+    <p>✔ Sites interativos</p>
+    <button onclick="abrirGit()">Acessar GitHub</button>
+  </div>
+</section>
+
+<section id="terminal">
+  <h2>Interactive Game</h2>
+  <div class="card">
+    <div id="gameSelector">
+      <button onclick="setGame('click')">Click Targets</button>
+      <button onclick="setGame('pong')">Pong</button>
+    </div>
+    <canvas id="gameCanvas" width="400" height="300" style="border: 1px solid #00f7ff; background: black;"></canvas>
+    <p id="score">Score: 0</p>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="resetGame()">Reset</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Saymmon Romero</p>
+</footer>
+
+<script>
+  function toggleSkills() {
+    const content = document.getElementById("skillsContent");
+    content.classList.toggle("hidden");
+    const h2 = document.querySelector('#skills h2');
+    h2.textContent = content.classList.contains('hidden') ? 'Skills ▼' : 'Skills ▲';
+  }
+
+  function toggleDetail(id) {
+    const detail = document.getElementById(id + "-detail");
+    detail.classList.toggle("hidden");
+  }
+
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('score');
+  let score = 0;
+  let targets = [];
+  let gameRunning = false;
+  let gameInterval;
+  let currentGame = 'click';
+
+  // Pong variables
+  let ball = { x: 200, y: 150, dx: 2, dy: 2, radius: 10 };
+  let paddleLeft = { x: 10, y: 120, width: 10, height: 60 };
+  let paddleRight = { x: 380, y: 120, width: 10, height: 60 };
+  let pongScore = { left: 0, right: 0 };
+
+  function setGame(game) {
+    currentGame = game;
+    resetGame();
+  }
+
+  function startGame() {
+    if (gameRunning) return;
+    gameRunning = true;
+    if (currentGame === 'click') {
+      score = 0;
+      scoreEl.textContent = 'Score: 0';
+      targets = [];
+      gameInterval = setInterval(updateGame, 100);
+      spawnTarget();
+    } else if (currentGame === 'pong') {
+      pongScore.left = 0;
+      pongScore.right = 0;
+      scoreEl.textContent = 'Player: 0 | AI: 0';
+      ball.x = 200;
+      ball.y = 150;
+      ball.dx = 2;
+      ball.dy = 2;
+      gameInterval = setInterval(updatePong, 16); // ~60fps
+    }
+  }
+
+  function resetGame() {
+    gameRunning = false;
+    clearInterval(gameInterval);
+    targets = [];
+    score = 0;
+    pongScore.left = 0;
+    pongScore.right = 0;
+    scoreEl.textContent = currentGame === 'click' ? 'Score: 0' : 'Player: 0 | AI: 0';
+    draw();
+  }
+
+  function spawnTarget() {
+    if (!gameRunning || currentGame !== 'click') return;
+    const x = Math.random() * (canvas.width - 50) + 25;
+    const y = Math.random() * (canvas.height - 50) + 25;
+    targets.push({ x, y, radius: 25, life: 100 }); // larger
+    setTimeout(spawnTarget, 2000);
+  }
+
+  function updateGame() {
+    if (!gameRunning || currentGame !== 'click') return;
+    targets.forEach((target, index) => {
+      target.life--;
+      if (target.life <= 0) {
+        targets.splice(index, 1);
+      }
+    });
+    draw();
+  }
+
+  function updatePong() {
+    if (!gameRunning || currentGame !== 'pong') return;
+    // Move ball
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+
+    // Ball collision with top/bottom
+    if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
+      ball.dy = -ball.dy;
+    }
+
+    // Ball collision with paddles
+    if (ball.x - ball.radius <= paddleLeft.x + paddleLeft.width && ball.y >= paddleLeft.y && ball.y <= paddleLeft.y + paddleLeft.height) {
+      ball.dx = -ball.dx;
+    }
+    if (ball.x + ball.radius >= paddleRight.x && ball.y >= paddleRight.y && ball.y <= paddleRight.y + paddleRight.height) {
+      ball.dx = -ball.dx;
+    }
+
+    // Score
+    if (ball.x < 0) {
+      pongScore.right++;
+      resetBall();
+    }
+    if (ball.x > canvas.width) {
+      pongScore.left++;
+      resetBall();
+    }
+
+    // AI paddle
+    paddleRight.y = ball.y - paddleRight.height / 2;
+
+    scoreEl.textContent = 'Player: ' + pongScore.left + ' | AI: ' + pongScore.right;
+    drawPong();
+  }
+
+  function resetBall() {
+    ball.x = 200;
+    ball.y = 150;
+    ball.dx = -ball.dx;
+  }
+
+  canvas.addEventListener('click', (e) => {
+    if (!gameRunning || currentGame !== 'click') return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    targets.forEach((target, index) => {
+      const dist = Math.sqrt((x - target.x) ** 2 + (y - target.y) ** 2);
+      if (dist < 30) { // larger click area
+        targets.splice(index, 1);
+        score++;
+        scoreEl.textContent = 'Score: ' + score;
+      }
+    });
+  });
+
+  // Mouse move for Pong
+  canvas.addEventListener('mousemove', (e) => {
+    if (!gameRunning || currentGame !== 'pong') return;
+    const rect = canvas.getBoundingClientRect();
+    paddleLeft.y = e.clientY - rect.top - paddleLeft.height / 2;
+  });
+
+  // Initial draw
+  draw();
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (currentGame === 'click') {
+      targets.forEach(target => {
+        ctx.beginPath();
+        ctx.arc(target.x, target.y, target.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#00f7ff';
+        ctx.fill();
+        ctx.strokeStyle = '#ff00ff';
+        ctx.stroke();
+      });
+    } else if (currentGame === 'pong') {
+      drawPong();
+    }
+  }
+
+  function drawPong() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw paddles
+    ctx.fillStyle = '#00f7ff';
+    ctx.fillRect(paddleLeft.x, paddleLeft.y, paddleLeft.width, paddleLeft.height);
+    ctx.fillRect(paddleRight.x, paddleRight.y, paddleRight.width, paddleRight.height);
+    // Draw ball
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = '#ff00ff';
+    ctx.fill();
+  }
+</script>
+
+</body>
+</html>
